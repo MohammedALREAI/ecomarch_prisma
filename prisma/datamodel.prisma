@@ -1,0 +1,55 @@
+type User{
+     id : ID @id
+
+name:String!
+surename:String!
+phoneNumber:String!
+email:String! @unique
+password:String!
+address:[Address!]! @realation(name:"UserToAddress",onDelete:CASCAL)
+Children:[Child!]! @realation(name:"UserToChildren",onDelete:SET_NULL)
+userType:Int!
+emailActivationCode:String!
+emalActive:Boolean!
+phoneActivationCode:String!
+phoneActive:Boolean!
+createdAt:DataTime! @createdAt
+updatedAt:DataTime! @updatedAt
+
+}
+type Child{
+     id : ID @id
+     name:String!
+     gender:String!
+     birthday:DataTime!
+
+
+}
+type Address{
+     id : ID @id
+     addressLineOne:String!
+     addressLineTow:String
+postalCode:String
+lonitude:Float!
+towship:Towship!
+latitude:Float!
+user:User! @realation(name:"AddressToUser",onDelete:SET_NULL)
+}
+type Towship{
+          id : ID @id
+          title:String
+          city:City! 
+          lonitude:Float!
+          latitude:Float!
+
+}
+type City{
+     id : ID @id
+          title:String!
+          latitude:Float!
+          lonitude:Float!
+
+
+
+
+}
